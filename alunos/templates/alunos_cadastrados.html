@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+<title>Alunos</title>
+{% endblock %}
+{% block content %}
+  <div class="container bg-light">
+    <h2 class="text-center">Alunos Cadastrados</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Idade</th>
+          <th>Curso</th>
+          <th>Data de Nascimento</th>
+          <th>Data de Ingresso</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for aluno in alunos %}
+        <tr>
+          <td><a href="#" onclick="abrirModal('{{aluno.foto.thumb.url}}')" data-toggle="modal" data-target="#modalFoto{{aluno.id}}">{{aluno.nome}}</a></td>          
+          <td>{{aluno.idade}}</td>
+          <td>{{aluno.curso}}</td>
+          <td>{{aluno.nascimento}}</td>
+          <td>{{aluno.ingresso}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <style>
+    /* Estilos para o modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.8);
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 600px;
+      text-align: center;
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style>
+  
+  <!-- O modal -->
+  <div id="modalFoto" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="fecharModal()">&times;</span>
+      <img id="fotoAluno" src="#" alt="Foto do Aluno">
+    </div>
+  </div>
+  <script>
+    // Função para abrir o modal e exibir a foto do aluno
+    function abrirModal(imagemUrl) {
+      document.getElementById('fotoAluno').src = imagemUrl;
+
+      // Exiba o modal
+      document.getElementById('modalFoto').style.display = 'block';
+    }
+
+    // Função para fechar o modal
+    function fecharModal() {
+      // Oculte o modal
+      document.getElementById('modalFoto').style.display = 'none';
+    }
+  </script>
+
+
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+{% endblock %}

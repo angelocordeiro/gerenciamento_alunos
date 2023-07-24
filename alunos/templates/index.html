@@ -1,1 +1,15 @@
-hello world
+{% extends 'base.html' %}
+{% block title %}
+<title>Minha Página</title>
+{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <section id="sobre">
+        <h2>Sobre</h2>
+        <p class="lead">Projeto destinado á cadastro de aluno.</p>
+        <p class="mb-0">Utilize o formulário de cadastro para cadastrar um novo aluno, apenas para administradores <a href="{% url 'login' %}">login</a>.</p>
+    </section>
+
+    <hr>
+</div>
+{% endblock %}
